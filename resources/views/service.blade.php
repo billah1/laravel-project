@@ -1,6 +1,9 @@
 @extends('master')
 
 @section('content')
-<h1>Service page</h1>
+
+@for ($i = 0;$i<4;$i++)
+   {{ $services[$i] }}<br>
+@endfor
 
 @endsection
