@@ -1,6 +1,6 @@
 @extends('master')
 
 @section('content')
-<h1>Contact page</h1>
+<h1>Home page</h1>
 
 @endsection
