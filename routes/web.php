@@ -30,8 +30,10 @@ Route::get('/about_us', function () {
 
 Route::get('/contact_page', function () {
      $page_name = "contact page";
-     $mobile = "01968949523";
-    return view('contact',compact('page_name','mobile'));
+     $product_count = "10";
+     $color ="red";
+     $products = [];
+    return view('contact',compact('page_name','product_count','color','products'));
 })->name('contact');
 
 Route::get('/service_page', function () {
