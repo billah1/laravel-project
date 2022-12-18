@@ -2,7 +2,7 @@
 
 @section('content')
 
-@for ($i = 0;$i<4;$i++)
+@for ($i = 0;$i<count($services);$i++)
    {{ $services[$i] }}<br>
 @endfor
 

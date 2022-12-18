@@ -30,10 +30,27 @@ Route::get('/about_us', function () {
 
 Route::get('/contact_page', function () {
      $page_name = "contact page";
-     $product_count = "10";
-     $color ="red";
-     $products = [];
-    return view('contact',compact('page_name','product_count','color','products'));
+
+
+     $products = [
+        1=>[
+            'name' => 'bag',
+            'color' => 'red',
+            'price' => '1200',
+        ],
+        2 =>[
+            'name' => 'sunglass',
+            'color' => 'black',
+            'price' => '600',
+        ],
+        3 =>[
+            'name' => 'bpdyspray',
+            'color' => 'black',
+            'price' => '150',
+        ],
+     ];
+     $product_count = count($products);
+    return view('contact',compact('page_name','product_count','products'));
 })->name('contact');
 
 Route::get('/service_page', function () {
