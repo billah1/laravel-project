@@ -2,17 +2,10 @@
 
 @section('content')
 <h1>{{ $page_name }}</h1>
-@foreach ($products as $key => $product)
-        <ul class="">
-            <li>{{ $key }}</li>
-            <li>{{ $product['name'] }}</li>
-            <li>{{ $product['color'] }}</li>
-            <li>{{ $product['price'] }}</li>
+@forelse ($products as $key => $product )
+@include('partial.product')
+@empty
+<p>no products found</p>
+@endforelse
 
-        </ul>
-        @empty
-        <p>no products found</p>
-
-        @endempty
-@endforeach
 @endsection
