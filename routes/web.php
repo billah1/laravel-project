@@ -82,7 +82,7 @@ Route::get('/contact_page', function () {
     //     'products' => $products,
     //     'product_count' =>$product_count,
     //  ],200);
-    return view('contact',compact('page_name','product_count','products'));
+    return view('contact',compact('page_name','products'));
 })->name('contact');
 
 Route::get('/service_page', function () {
@@ -94,6 +94,42 @@ Route::get('/service_page', function () {
     ];
     return view('service',compact('services'));
 })->name('service');
+
+Route::get('/send-me-details',function(Request $request){
+    $secret_key = 85978;
+    $user_key = $request->user_key;
+
+    $data =[
+        'user_name' =>'Masum Billah',
+        'designation' =>'full stack developer',
+        'mobile' => '01968949523',
+        'bank_acc' =>'7017010736686',
+    ];
+    if($secret_key == $user_key){
+        return response()->json([
+            'user_info' =>$data
+        ]);
+
+    }else
+    return response([
+        'message' =>'provide valid secret key'
+    ],404);
+});
+
+// Route::prefix('page')->name('laravel.')->group(function(){
+//    Route::get('/home',function(){
+//     return view('home');
+//    })->name('home');
+//    Route::get('/contact',function(){
+//     return view('contact');
+//    })->name('contact');
+//    Route::get('/about',function(){
+//     return view('about');
+//    })->name('about');
+//    Route::get('/service',function(){
+//     return view('service');
+//    })->name('service');
+// });
 
 // Route::get('/course-count/download',function(){
 //     return response()->download(public_path('/course_content.pdf'),'laravel 9 master class.pdf');
