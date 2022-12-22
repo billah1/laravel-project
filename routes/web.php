@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\frontcontroller;
+use App\Http\Controllers\postcontroller;
 use App\Http\Controllers\userInfocontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::get('/service_page',[frontcontroller::class,'service'])->name('service');
 
 Route::get('/send-me-details',userInfocontroller::class)->name('sendmedetails');
 
+Route::resource('/posts', postcontroller::class);
 // Route::prefix('page')->name('laravel.')->group(function(){
 //    Route::get('/home',function(){
 //     return view('home');
