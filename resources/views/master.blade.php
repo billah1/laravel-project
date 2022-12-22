@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
    @include('include.style')
-    <title>First Laravel Project</title>
+    <title>@yield('title')</title>
   </head>
   <body>
     @include('include.navbar')

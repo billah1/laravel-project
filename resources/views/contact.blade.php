@@ -1,5 +1,5 @@
 @extends('master')
-
+@section('title','Contact_page')
 @section('content')
 <h1>{{ $page_name }}</h1>
 @forelse ($products as $key => $product )
