@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        'page_name' =>'Home page',
-        'name' => 'larael 9 course'
-    ]);
+Route::get('/', function (Request $request) {
+    // dd(
+    //     // "Laravel 9"
+    //     $request->path(), //path
+    //     $request->is('/'), //1 or 0
+    //     $request->fullUrl(),
+    //     $request->host(),
+    //     $request->httpHost(),
+    //     $request->schemeAndHttpHost(),
+
+
+    //     $request->routeIs('home'),
+    //     $request->header('X-Header-Name'),
+    //     $request->header('X-Header-Name','default'),
+    //     $request->bearerToken(),//used in api building
+    //     $request->ip(),
+    //     $request->prefers(['text/html','aplication/json']),
+    // );
+    $data = [
+        'page_name' => 'Home page',
+        'name' =>'laravel 9 cpurse'
+    ];
+    return response($data)
+    ->header('content-type','Application/Json')
+    ->cookie('My_IDCard', 'Masum Billah', 3600);
+
+    // return view('home',[
+    //     'page_name' =>'Home page',
+    //     'name' => 'larael 9 course'
+    // ]);
 
 })->name('home');
 
