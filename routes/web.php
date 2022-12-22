@@ -32,20 +32,22 @@ Route::get('/', function (Request $request) {
     //     $request->ip(),
     //     $request->prefers(['text/html','aplication/json']),
     // );
-    $data = [
-        'page_name' => 'Home page',
-        'name' =>'laravel 9 cpurse'
-    ];
-    return response($data)
-    ->header('content-type','Application/Json')
-    ->cookie('My_IDCard', 'Masum Billah', 3600);
+    // $data = [
+    //     'page_name' => 'Home page',
+    //     'name' =>'laravel 9 cpurse'
+    // ];
+    // return response($data)
+    // ->header('content-type','Application/Json')
+    // ->cookie('My_IDCard', 'Masum Billah', 3600);
 
-    // return view('home',[
-    //     'page_name' =>'Home page',
-    //     'name' => 'larael 9 course'
-    // ]);
+    return view('home',[
+        'page_name' =>'Home page',
+        'name' => 'larael 9 course'
+    ]);
+    // return redirect('/contact-page');
 
 })->name('home');
+
 
 Route::get('/about_us', function () {
     return view('about',[
@@ -75,7 +77,11 @@ Route::get('/contact_page', function () {
             'price' => '150',
         ],
      ];
-     $product_count = count($products);
+    //  $product_count = count($products);
+    //  return response()->json([
+    //     'products' => $products,
+    //     'product_count' =>$product_count,
+    //  ],200);
     return view('contact',compact('page_name','product_count','products'));
 })->name('contact');
 
@@ -88,6 +94,10 @@ Route::get('/service_page', function () {
     ];
     return view('service',compact('services'));
 })->name('service');
+
+// Route::get('/course-count/download',function(){
+//     return response()->download(public_path('/course_content.pdf'),'laravel 9 master class.pdf');
+// });
 
 // Route::get('/service-page/{service_id}/{service_name?}', function ($service_id,$service_name=null) {
 
