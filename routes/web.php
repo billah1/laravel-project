@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\frontcontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,107 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Request $request) {
-    // dd(
-    //     // "Laravel 9"
-    //     $request->path(), //path
-    //     $request->is('/'), //1 or 0
-    //     $request->fullUrl(),
-    //     $request->host(),
-    //     $request->httpHost(),
-    //     $request->schemeAndHttpHost(),
+Route::get('/', [frontcontroller::class,'home'])->name('home');
 
 
-    //     $request->routeIs('home'),
-    //     $request->header('X-Header-Name'),
-    //     $request->header('X-Header-Name','default'),
-    //     $request->bearerToken(),//used in api building
-    //     $request->ip(),
-    //     $request->prefers(['text/html','aplication/json']),
-    // );
-    // $data = [
-    //     'page_name' => 'Home page',
-    //     'name' =>'laravel 9 cpurse'
-    // ];
-    // return response($data)
-    // ->header('content-type','Application/Json')
-    // ->cookie('My_IDCard', 'Masum Billah', 3600);
+Route::get('/about_us',[frontcontroller::class,'about'])->name('about');
 
-    return view('home',[
-        'page_name' =>'Home page',
-        'name' => 'larael 9 course'
-    ]);
-    // return redirect('/contact-page');
+Route::get('/contact_page',[frontcontroller::class,'contact'])->name('contact');
 
-})->name('home');
+Route::get('/service_page',[frontcontroller::class,'service'])->name('service');
 
-
-Route::get('/about_us', function () {
-    return view('about',[
-        'page_name' => 'About page',
-    ]);
-
-})->name('about');
-
-Route::get('/contact_page', function () {
-     $page_name = "contact page";
-
-
-     $products = [
-        1=>[
-            'name' => 'bag',
-            'color' => 'red',
-            'price' => '1200',
-        ],
-        2 =>[
-            'name' => 'sunglass',
-            'color' => 'black',
-            'price' => '600',
-        ],
-        3 =>[
-            'name' => 'bpdyspray',
-            'color' => 'black',
-            'price' => '150',
-        ],
-     ];
-    //  $product_count = count($products);
-    //  return response()->json([
-    //     'products' => $products,
-    //     'product_count' =>$product_count,
-    //  ],200);
-    return view('contact',compact('page_name','products'));
-})->name('contact');
-
-Route::get('/service_page', function () {
-    $services = [
-     'web design',
-     'web development',
-     'app development',
-     'graphices development',
-    ];
-    return view('service',compact('services'));
-})->name('service');
-
-Route::get('/send-me-details',function(Request $request){
-    $secret_key = 85978;
-    $user_key = $request->user_key;
-
-    $data =[
-        'user_name' =>'Masum Billah',
-        'designation' =>'full stack developer',
-        'mobile' => '01968949523',
-        'bank_acc' =>'7017010736686',
-    ];
-    if($secret_key == $user_key){
-        return response()->json([
-            'user_info' =>$data
-        ]);
-
-    }else
-    return response([
-        'message' =>'provide valid secret key'
-    ],404);
-});
+Route::get('/send-me-details',[frontcontroller::class,'sendMeDetails'])->name('sendmedetails');
 
 // Route::prefix('page')->name('laravel.')->group(function(){
 //    Route::get('/home',function(){
