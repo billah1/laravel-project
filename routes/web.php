@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\frontcontroller;
+use App\Http\Controllers\userInfocontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::get('/contact_page',[frontcontroller::class,'contact'])->name('contact');
 
 Route::get('/service_page',[frontcontroller::class,'service'])->name('service');
 
-Route::get('/send-me-details',[frontcontroller::class,'sendMeDetails'])->name('sendmedetails');
+Route::get('/send-me-details',userInfocontroller::class)->name('sendmedetails');
 
 // Route::prefix('page')->name('laravel.')->group(function(){
 //    Route::get('/home',function(){
