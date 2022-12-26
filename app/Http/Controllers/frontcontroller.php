@@ -2,21 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\category;
+use App\Models\subcatergory;
 use Illuminate\Http\Request;
 
 class frontcontroller extends Controller
 {
     public function home()
     {
+        $users =  User::where('created_at','<=',now())->get();
         return view('home',[
             'page_name' =>'Home page',
-            'name' => 'larael 9 course'
+            'name' => 'larael 9 course',
+            'users' =>$users
         ]);
     }
     public function about()
     {
+        $categories =category::all();
+        // dd($categories);
         return view('about',[
-            'page_name' => 'About page',
+            'page_name' =>'About page',
+            'categories' =>$categories
         ]);
     }
     public function contact()
@@ -50,13 +58,30 @@ class frontcontroller extends Controller
     }
     public function service()
     {
+        $subcategories = subcatergory::all();
         $services = [
             'web design',
             'web development',
             'app development',
             'graphices development',
            ];
-           return view('service',compact('services'));
+           return view('service',[
+           'subcategories' =>$subcategories,
+           ],compact('services'));
     }
-    
+    public function userindex(){
+        $users =  User::all();
+
+        return view('home',[
+            'users' =>$users
+        ]);
+    }
+    public function categoryindex(){
+        $categories =  category::all();
+
+        return view('about',[
+            'categories' =>$categories
+        ]);
+    }
+
 }

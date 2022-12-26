@@ -18,6 +18,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('service') }}">Service</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('category.create') }}">create category</a>
+          </li>
 
 
       </div>
