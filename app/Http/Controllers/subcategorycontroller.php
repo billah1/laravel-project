@@ -33,7 +33,7 @@ class subcategorycontroller extends Controller
     {
         $categories =category::get(['id','name']);
         //  return $categories;
-        return view('subcategory.create',compact('categories'));
+        return view('subcatergory.create',compact('categories'));
     }
 
     /**

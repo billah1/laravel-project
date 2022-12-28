@@ -17,6 +17,9 @@ class categorycontroller extends Controller
      */
     public function index()
     {
+       $categories = category::get(['id','name','slug','created_at']);
+
+       return view('category.index',compact('categories'));
 
     }
 
@@ -27,7 +30,8 @@ class categorycontroller extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $categories = category::get(['id','name']);
+        return view('category.create',compact('categories'));
     }
 
     /**
