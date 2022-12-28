@@ -27,6 +27,12 @@
                 </td>
                 <td>
                     <a href="{{ route('subcategory.edit',['subcategory'=>$subcategory->id]) }}" class="btn btn-info">Edit</a>
+                    <form action="{{ route('subcategory.destroy',['subcategory'=>$subcategory->id]) }}" method="post">
+                      @method('DELETE')
+                      @csrf
+                        <button href=""type="submit" class="btn btn-danger">Del</button>
+                    </form>
+
                 </td>
             </tr>
                 @endforeach
