@@ -2,7 +2,10 @@
 @section('title','subcategory_create_page')
 @section('content')
 <div class="row">
-  
+    <div class="d-flex justify-content-start my-4">
+        <a href="{{ route('subcategory.index') }}" class="btn btn-info">sub categories</a>
+       </div>
+
     <div class="col-8 m-auto my-3" >
         <div class="card p-4">
             <form action="{{ route('subcategory.store') }}" method="POST">

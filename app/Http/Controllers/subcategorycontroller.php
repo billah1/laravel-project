@@ -18,7 +18,9 @@ class subcategorycontroller extends Controller
      */
     public function index()
     {
-        //
+       $subcategories = subcatergory::with(['category'])->get(['id','name','category_id','created_at']);
+    //    return $subcategories ;
+       return view('subcategory.index',compact('subcategories'));
     }
 
     /**
@@ -42,6 +44,7 @@ class subcategorycontroller extends Controller
     public function store(SubCategoryStoreRequest $request)
     {
         //  dd($request->all());
+
         subcatergory::create([
             'category_id' =>$request->category_id,
             'name' =>$request->subcategory_name,
@@ -72,7 +75,11 @@ class subcategorycontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $categories =category::get(['id','name']);
+        //  return $categories;
+        $subcategory = subcatergory::find($id);
+        return view('subcatergory.edit',compact('categories'));
     }
 
     /**
