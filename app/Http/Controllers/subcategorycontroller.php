@@ -8,6 +8,7 @@ use App\Models\subcatergory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\SubCategoryStoreRequest;
+use App\Http\Requests\subCategoryUpdateRequest;
 
 class subcategorycontroller extends Controller
 {
@@ -20,7 +21,7 @@ class subcategorycontroller extends Controller
     {
        $subcategories = subcatergory::with(['category'])->get(['id','name','category_id','created_at']);
     //    return $subcategories ;
-       return view('subcategory.index',compact('subcategories'));
+       return view('subcatergory.index',compact('subcategories'));
     }
 
     /**
@@ -53,7 +54,7 @@ class subcategorycontroller extends Controller
 
         ]);
         Session::flash('status','subcategory created a sucessfully!');
-        return back();
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -64,7 +65,8 @@ class subcategorycontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $subcategory = subcatergory::find($id);
+        return view('subcatergory.show',compact('subcategory'));
     }
 
     /**
@@ -75,11 +77,11 @@ class subcategorycontroller extends Controller
      */
     public function edit($id)
     {
-        // dd($id);
+        //  dd($id);
         $categories =category::get(['id','name']);
         //  return $categories;
         $subcategory = subcatergory::find($id);
-        return view('subcatergory.edit',compact('categories'));
+        return view('subcatergory.edit',compact('categories','subcategory'));
     }
 
     /**
@@ -89,9 +91,19 @@ class subcategorycontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(subCategoryUpdateRequest $request, $id)
     {
-        //
+        // dd($request->all());
+        $subcategory = subcatergory::find($id);
+        $subcategory->update([
+            'category_id' =>$request->category_id,
+            'name' =>$request->subcategory_name,
+            'slug' =>Str::slug($request->subcategory_slug),
+            'is_active' =>$request->filled('is_active')
+
+        ]);
+        Session::flash('status','subcategory updated a sucessfully!');
+        return redirect()->route('subcategory.index');
     }
 
     /**
