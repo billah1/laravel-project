@@ -2,6 +2,9 @@
 @section('title','category-create_page')
 @section('content')
 <div class="row">
+    <div class="d-flex justify-content-start my-4">
+        <a href="{{ route('category.index') }}" class="btn btn-info">categories</a>
+       </div>
     <div class="col-8 m-auto">
 
         <form action="{{ route('category.store') }}" method="POST">

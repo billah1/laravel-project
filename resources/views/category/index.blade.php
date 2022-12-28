@@ -25,15 +25,16 @@
                    <td>
                        {{ $category->created_at->diffForHumans() }}
                    </td>
-                   {{-- <td>
-                       <a href="{{ route('subcategory.edit',['subcategory'=>$subcategory->id]) }}" class="btn btn-info">Edit</a>
-                       <form action="{{ route('subcategory.destroy',['subcategory'=>$subcategory->id]) }}" method="post">
+                   <td>
+                       <a href="{{ route('category.edit',['category'=>$category->id]) }}" class="btn btn-info">Edit</a>
+                       {{-- <a href="{{ route('category.destroy',['category'=>$category->id]) }}" class="btn btn-danger">DEL</a> --}}
+                       <form action="{{ route('category.destroy',['category'=>$category->id]) }}" method="post">
                          @method('DELETE')
                          @csrf
-                           <button href=""type="submit" class="btn btn-danger">Del</button>
+                           <button type="submit" class="btn btn-danger">Del</button>
                        </form>
 
-                   </td> --}}
+                   </td>
                </tr>
                    @endforeach
                </tbody>

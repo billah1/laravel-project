@@ -116,7 +116,7 @@ class subcategorycontroller extends Controller
     {
         // dd($id);
         subcatergory::find($id)->delete();
-        Session::flash('status','subcategory updated a sucessfully!');
+        Session::flash('status','subcategory deleted a sucessfully!');
         return redirect()->route('subcategory.index');
     }
 }
