@@ -18,7 +18,7 @@ class categorycontroller extends Controller
      */
     public function index()
     {
-       $categories = category::get(['id','name','slug','created_at']);
+       $categories = category::withCount(['subcategories'])->get(['id','name','slug','created_at']);
 
        return view('category.index',compact('categories'));
 

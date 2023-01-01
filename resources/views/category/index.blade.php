@@ -11,6 +11,7 @@
                    <tr>
                        <th scope="col">#</th>
                        <th scope="col">category name</th>
+                       <th scope="col"># of subcategory</th>
                        <th scope="col">category slug</th>
                        <th scope="col">created</th>
                        <th scope="col">Action</th>
@@ -21,6 +22,7 @@
                    <tr>
                    <th scope="row">{{ $category->id }}</th>
                    <td scope="row">{{ $category->name}}</td>
+                   <td scope="row">{{ $category->subcategories_count}}</td>
                    <td scope="row">{{ $category->slug }}</td>
                    <td>
                        {{ $category->created_at->diffForHumans() }}
