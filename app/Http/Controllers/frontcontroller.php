@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\User;
 use App\Models\category;
 use App\Models\subcatergory;
@@ -83,5 +84,11 @@ class frontcontroller extends Controller
             'categories' =>$categories
         ]);
     }
+
+    public function books(){
+        $books = Book::all();
+        return $books;
+    }
+
 
 }

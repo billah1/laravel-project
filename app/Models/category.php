@@ -13,9 +13,9 @@ class category extends Model
         'slug',
         'is_active'
     ];
-    // public function category(){
-    //     return $this->belongsTo(category::class);
-    // }
+    public function category(){
+        return $this->belongsTo(category::class);
+    }
     public function subcategories(){
         return $this->hasMany(subcatergory::class);
     }

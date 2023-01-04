@@ -33,7 +33,7 @@ Route::get('/send-me-details',userInfocontroller::class)->name('sendmedetails');
 Route::resource('/category', categorycontroller::class);
 
 Route::resource('/subcategory', subcategorycontroller::class);
-
+Route::get('books',[frontcontroller::class,'books']);
 // Route::prefix('page')->name('laravel.')->group(function(){
 //    Route::get('/home',function(){
 //     return view('home');
