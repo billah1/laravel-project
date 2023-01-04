@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -24,7 +25,7 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'phone' =>$this->faker->phoneNumber()
-            
+
         ];
     }
 
@@ -38,5 +39,36 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+
     }
+    public function admin(){
+       return $this->state(function (array $attributes){
+        return[
+
+            'name' => 'admin',
+            'email' =>'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'), // password
+            'remember_token' => Str::random(10),
+            'phone' =>'1123456789',
+
+        ];
+       });
+    }
+    public function manager(){
+        return $this->state(function (array $attributes){
+         return[
+
+             'name' => 'manager',
+             'email' =>'manager@gmail.com',
+             'email_verified_at' => now(),
+             'password' => Hash::make('1234'), // password
+             'remember_token' => Str::random(10),
+             'phone' =>'0188800543',
+
+         ];
+        });
+     }
+
+
 }
