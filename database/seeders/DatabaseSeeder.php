@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if($this->command->confirm('do you want to refresh the db')){
+            $this->command->call('migrate:fresh');
+            $this->command->info('database is refresh');
+        }
      $this->call([
     UserSeeder::class,
     CategorySeeder::class,
