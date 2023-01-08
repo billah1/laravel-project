@@ -32,6 +32,10 @@ Route::get('/send-me-details',userInfocontroller::class)->name('sendmedetails');
 
 Route::resource('/category', categorycontroller::class);
 Route::get('/category/{category_id}/restore',[categorycontroller::class,'restore'])->name('category.restore');
+Route::get('/category/{category_id}/forcedelete',[categorycontroller::class,'forcedelete'])->name('category.forcedelete');
+
+
+
 Route::resource('/subcategory', subcategorycontroller::class);
 Route::get('books',[frontcontroller::class,'books']);
 

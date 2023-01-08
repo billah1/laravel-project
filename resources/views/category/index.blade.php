@@ -72,12 +72,15 @@
                    </td>
                    <td>
                        <a href="{{ route('category.restore',['category_id'=>$category->id,]) }}" class="btn btn-info">Restore</a>
+                       <form action="{{ route('category.forcedelete',['category_id'=>$category->id]) }}" method="post">
+                        @method('GET')
+                        @csrf
+                          <button type="submit" class="btn btn-danger">ForceDel</button>
+                      </form>
+{{--
+                       <a href="{{ route('category.forcedelete',['category_id'=>$category->id,]) }}" class="btn btn-danger">Force Del</a> --}}
                        {{-- <a href="{{ route('category.destroy',['category'=>$category->id]) }}" class="btn btn-danger">DEL</a> --}}
-                       <form action="{{ route('category.destroy',['category'=>$category->id]) }}" method="post">
-                         @method('DELETE')
-                         @csrf
-                           <button type="submit" class="btn btn-danger">Force Del</button>
-                       </form>
+
 
                    </td>
                </tr>

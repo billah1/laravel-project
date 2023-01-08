@@ -127,9 +127,13 @@ class categorycontroller extends Controller
     public function restore($category_id){
         // dd($category_id);
         $category = category::withTrashed()->whereId('category_id', $category_id)->restore();
-       
+
         return back();
+    }
+    public function forcedelete($category_id){
+        //  dd($category_id);
+        $category = category::withTrashed()->whereId('category_id', $category_id)->forcedelete();
 
-
+        return back();
     }
 }
