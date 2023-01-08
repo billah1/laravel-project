@@ -21,9 +21,14 @@ class categorycontroller extends Controller
        $categories = category::query()
     //    withTrashed()
             // onlyTrashed()
-       ->withCount(['subcategories'])->get(['id','name','slug','created_at']);
+       ->withCount(['subcategories'])->get(['id','name','created_at']);
 
-       return view('category.index',compact('categories'));
+       $delcategories = category::query()->
+       //    withTrashed()
+        onlyTrashed()
+          ->withCount(['subcategories'])->get(['id','name','created_at']);
+
+       return view('category.index',compact('categories','delcategories'));
 
     }
 
@@ -118,5 +123,13 @@ class categorycontroller extends Controller
          category::find($id)->delete();
          Session::flash('status','category delete a sucessfully!');
          return redirect()->route('category.index');
+    }
+    public function restore($category_id){
+        // dd($category_id);
+        $category = category::withTrashed()->whereId('category_id', $category_id)->restore();
+       
+        return back();
+
+
     }
 }

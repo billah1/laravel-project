@@ -31,41 +31,8 @@ Route::get('/service_page',[frontcontroller::class,'service'])->name('service');
 Route::get('/send-me-details',userInfocontroller::class)->name('sendmedetails');
 
 Route::resource('/category', categorycontroller::class);
-
+Route::get('/category/{category_id}/restore',[categorycontroller::class,'restore'])->name('category.restore');
 Route::resource('/subcategory', subcategorycontroller::class);
 Route::get('books',[frontcontroller::class,'books']);
-// Route::prefix('page')->name('laravel.')->group(function(){
-//    Route::get('/home',function(){
-//     return view('home');
-//    })->name('home');
-//    Route::get('/contact',function(){
-//     return view('contact');
-//    })->name('contact');
-//    Route::get('/about',function(){
-//     return view('about');
-//    })->name('about');
-//    Route::get('/service',function(){
-//     return view('service');
-//    })->name('service');
-// });
 
-// Route::get('/course-count/download',function(){
-//     return response()->download(public_path('/course_content.pdf'),'laravel 9 master class.pdf');
-// });
-
-// Route::get('/service-page/{service_id}/{service_name?}', function ($service_id,$service_name=null) {
-
-//     return "Service".$service_id.''.$service_name;
-// })->name('service');
-// Route::get('/user/{id}/{name}',function($id,$name){
-//     echo $id, $name;
-// })->where(['id' =>'[0-9]+','name' =>'[a-z]+']);
-
-// Route::get('/category/{category_name}',function($category_name){
-//     echo $category_name;
-// })->whereIn('category_name',['electronices','movie','books','watch','laptop']);
-
-// Route::get('/search/{keywords}',function($keywords){
-//     echo $keywords;
-// })->where('keywords','.*');
 
