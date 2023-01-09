@@ -6,6 +6,7 @@ use App\Models\category;
 use App\Models\subcatergory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -48,7 +49,10 @@ class ProductController extends Controller
             $file_ext = $file->getClientOriginalExtension();
             $file_org_name = $file->getClientOriginalName();
 
-            dd($file,$file_type,$file_ext,$file_org_name);
+            // dump($file->store('image'));
+            // dump(Storage::disk('public')->put('image',$file));
+            // dump($file->storeAs('image','new_product_1'.','.$file->getClientOriginalExtension()));
+            dump(storage::putFileAs('product_image',$file,'new_product_1'.'.'.$file->getClientOriginalExtension()));
          }
     }
 
