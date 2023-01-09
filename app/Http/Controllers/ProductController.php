@@ -52,7 +52,9 @@ class ProductController extends Controller
             // dump($file->store('image'));
             // dump(Storage::disk('public')->put('image',$file));
             // dump($file->storeAs('image','new_product_1'.','.$file->getClientOriginalExtension()));
-            dump(storage::putFileAs('product_image',$file,'new_product_1'.'.'.$file->getClientOriginalExtension()));
+            // dump(storage::putFileAs('product_image',$file,'new_product_1'.'.'.$file->getClientOriginalExtension()));
+            $product_image1 = $file->storeAs('product_image','new_product_1'.'.'.$file->getClientOriginalExtension());
+            dump(storage::url($product_image1));
          }
     }
 
