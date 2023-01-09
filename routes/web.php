@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\postcontroller;
 use App\Http\Controllers\frontcontroller;
 use App\Http\Controllers\categorycontroller;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userInfocontroller;
 use App\Http\Controllers\subcategorycontroller;
 
@@ -39,4 +40,4 @@ Route::get('/category/{category_id}/forcedelete',[categorycontroller::class,'for
 Route::resource('/subcategory', subcategorycontroller::class);
 Route::get('books',[frontcontroller::class,'books']);
 
-
+Route::resource('/products',ProductController::class);

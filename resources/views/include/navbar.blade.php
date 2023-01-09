@@ -30,7 +30,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('subcategory.index') }}">create subcategory</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('products.create') }}">Add New Product</a>
+          </li>
 
       </div>
     </div>
