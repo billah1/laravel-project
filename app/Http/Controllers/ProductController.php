@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\category;
+use Illuminate\Support\Str;
 use App\Models\subcatergory;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductStoreRequest;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -41,21 +44,37 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        // dd($request->hasFile('image'));
-         $file_exits = $request->hasFile('image');
-         if($file_exits){
-            $file = $request->file('image');
-            $file_type = $file->getClientMimeType();
-            $file_ext = $file->getClientOriginalExtension();
-            $file_org_name = $file->getClientOriginalName();
+        // dd($request->all());
+        $product = Product::create([
+           'category_id' => $request->category_id,
+           'subcategory_id' => $request->subcategory_id,
+           'name' => $request->name,
+           'slug' =>Str::slug($request->slug) ,
+           'description' => $request->description,
+           'price' => $request->price,
 
-            // dump($file->store('image'));
-            // dump(Storage::disk('public')->put('image',$file));
-            // dump($file->storeAs('image','new_product_1'.','.$file->getClientOriginalExtension()));
-            // dump(storage::putFileAs('product_image',$file,'new_product_1'.'.'.$file->getClientOriginalExtension()));
-            $product_image1 = $file->storeAs('product_image','new_product_1'.'.'.$file->getClientOriginalExtension());
-            dump(storage::url($product_image1));
-         }
+        ]);
+        $this->image_upload($request,$product->id);
+        return back();
+
+    }
+    public function image_upload($request,$product_id){
+       if($request->hasFile('image')){
+           $photo_location ='public/uploads/product-image/';
+           $uploade_photo =$request->file('image');
+           $photo_name = $product_id. '.' .$uploade_photo->getClientOriginalExtension();
+           $new_photo_location = $photo_location.$photo_name;
+           Image::make($uploade_photo)->resize(600,600)->save(base_path($new_photo_location));
+           //updated the product image field
+           $product = Product::find($product_id);
+           $product->update([
+            'image'=>$photo_name
+           ]);
+
+
+       }else{
+        return back();
+       }
     }
 
     /**
