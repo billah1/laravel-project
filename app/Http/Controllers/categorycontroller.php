@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\CtaegoryCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\categoryStoreRequest;
 use App\Http\Requests\categoryUpdateRequest;
@@ -54,11 +57,17 @@ class categorycontroller extends Controller
         // dd($request->all());
 
 
-        category::create([
+     $category = category::create([
            'name' => $request->category_name,
            'slug' => Str::slug($request->category_name),
            'is_active' => $request->filled('is_active'),
         ]);
+
+        // mail send
+        $user= User::find(1);
+        Mail::to($user)->send(
+          new CtaegoryCreated($category)
+        );
         Session::flash('status','category created a sucessfully!');
         return redirect()->route('category.index');
     }
