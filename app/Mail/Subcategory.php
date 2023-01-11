@@ -2,28 +2,25 @@
 
 namespace App\Mail;
 
-use App\Models\category;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Attachment;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 
-class CtaegoryCreated extends Mailable
+class Subcategory extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $category;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(category $category)
+    public function __construct()
     {
-        $this->category = $category;
+        //
     }
 
     /**
@@ -34,9 +31,7 @@ class CtaegoryCreated extends Mailable
     public function envelope()
     {
         return new Envelope(
-
-            subject: 'CtaegoryCreated',
-
+            subject: 'Subcategory',
         );
     }
 
@@ -47,9 +42,8 @@ class CtaegoryCreated extends Mailable
      */
     public function content()
     {
-        $subject ="category:{$this->category->name} Created";
         return new Content(
-            view: 'emails.category.category-created',
+            view: 'view.name',
         );
     }
 
@@ -60,16 +54,6 @@ class CtaegoryCreated extends Mailable
      */
     public function attachments()
     {
-        return [
-            // public_path('invoice/Rubel_Mia.pdf'),
-
-            Attachment::fromPath('invoice/Rubel_Mia.pdf')
-                ->as('name.pdf')
-                ->withMime('application/pdf'),
-
-
-        ];
+        return [];
     }
-
-
 }
